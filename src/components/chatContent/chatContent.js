@@ -35,8 +35,12 @@ export default class ChatContent extends Component {
     this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
   componentDidMount() {
-    window.addEventListener("keydown", (e) => {
+    let check=JSON.parse(window.localStorage.getItem("msgs")) || [];
+    if(check.length==0)
+    {
       localStorage.setItem("msgs",JSON.stringify(this.chatItms));
+    }
+    window.addEventListener("keydown", (e) => {
       if (e.keyCode == 13) 
       {
         if (this.state.msg != "") 
